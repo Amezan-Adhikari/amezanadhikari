@@ -1,16 +1,21 @@
 <script>
-  import Navbar from "$lib/components/Navbar.svelte";
-  import Home from "$lib/pages/Home.svelte";
-  import Nodes from "$lib/pages/Nodes.svelte";
+  import Hero from "$lib/pages/home/Hero.svelte";
+import Loading from "$lib/pages/home/Loading.svelte";
+
+let isloading = true;
+setTimeout(() => {
+  isloading = false;
+},3370)
 </script>
 
+{#if isloading}
+    <Loading/>
+{:else}
+<Hero/>
+{/if}
 
-<main class="relative">
-    <main class="">
-        <Nodes/>
-    </main>
-    <div class="absolute top-0 left-0 w-screen">
-        <Navbar/>
-        <Home/>
-    </div>
-</main>
+
+
+<style>
+  
+</style>
