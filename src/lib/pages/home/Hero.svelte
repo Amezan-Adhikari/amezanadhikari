@@ -112,8 +112,8 @@ import { onMount } from "svelte";
     </div>
 </main>
 
-<div class="bg-primary  p-5 md:px-40 lg:px-64" id="description" bind:this={descriptionSection}>
-    <div id="description" class="gradient leading-[150%] text-white p-6 rounded-[26px] flex flex-col gap-7 font-medium text-sm md:text-lg">
+<div class="bg-primary md:h-screen  p-5 md:px-40 lg:px-64" id="description" bind:this={descriptionSection}>
+    <div id="description" class="gradient leading-[150%] text-white p-6 md:p-16 md:px-20 rounded-[26px] flex flex-col gap-7 font-medium text-sm">
         <p>I am Amezan Adhikari,</p>
         <p>
             A passionate web developer, designer, and
@@ -122,6 +122,12 @@ import { onMount } from "svelte";
         <p>
             As a freelancer, I skillfully combine technology and design to create sleek, user-friendly experiences.
             Constantly exploring new possibilities, I love crafting innovative solutions that stand out.
+        </p>
+        <p class="leading-[150%]">
+            I specialize in creating seamless digital experiences, focusing on both functionality and visual appeal.
+             My work is characterized by attention to detail,
+             and I enjoy tackling complex challenges,
+             always seeking to push the boundaries of what&apos;s possible in web design and development.
         </p>
     </div>
 
@@ -153,7 +159,7 @@ import { onMount } from "svelte";
                 </div>
                 <div>
                     <p class="text-white font-medium text-xs leading-[150%] text-[#999999]">
-                        I completed my +2 degree in science from KMC bagbazar.
+                        I completed my +2 degree in science from KMC bagbazar, graduating with Distinction.
                     </p>
                 </div>
             </div>
@@ -163,11 +169,11 @@ import { onMount } from "svelte";
 
 <div id="projects" class="bg-primary p-5 md:px-40 lg:px-64">
     <h1 class="text-sm md:text-lg font-medium text-[#A2A2A2] mb-10">Projects : </h1>
-    <div class="flex flex-col md:flex-row gap-10 items-center">
+    <div class="flex flex-col md:flex-row flex-wrap justify-center gap-10 items-center">
 
 
         {#each projects.data as project}
-        <div class="w-[300px] md:w-[300px] gradient border-2 border-[#5D5D5D] overflow-hidden rounded-[13px] ">
+        <div class="max-w-[350px] gradient border-2 border-[#5D5D5D] overflow-hidden rounded-[13px] ">
            
             <div>
                 <img src={project.image} alt="project 1 interactive nodes">
@@ -177,7 +183,7 @@ import { onMount } from "svelte";
             <h1 class="font-medium text-center text-sm md:text-md text-white my-5">{project.name}</h1>
            
             
-                <p class="text-white font-medium leading-[150%] text-[#999999] text-xs">
+                <p class=" font-medium leading-[150%] text-[#999999] text-xs">
                     {project.description}
                 </p>
             </div>
@@ -188,5 +194,9 @@ import { onMount } from "svelte";
 
         {/each}
     </div>
+</div>
+<div class="py-6 text-center bg-primary text-white">
+    thank you
+
 </div>
 </section>
