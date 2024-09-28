@@ -8,11 +8,11 @@ setTimeout(() => {
 },3370)
 </script>
 
-{#if isloading}
+<!-- {#if isloading}
     <Loading/>
-{:else}
+{:else} -->
 <Hero/>
-{/if}
+<!-- {/if} -->
 
 
 

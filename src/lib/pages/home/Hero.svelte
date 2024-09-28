@@ -71,7 +71,8 @@
 </style>
 
 <script lang="ts">
-  import { onMount } from "svelte";
+  import { projects } from "$lib/data";
+import { onMount } from "svelte";
     let heroSection:HTMLElement;
     let descriptionSection:HTMLElement;
     let text:String="AMEZ";
@@ -106,19 +107,18 @@
         <div class="flex justify-center items-center flex-col gap-4">
            
             <p class="font-medium text-white mt-4 text-center text-sm">View More</p>
-            <a href="#projects"><span class="h-[50px] w-[50px] cursor-pointer  hover:bg-opacity-60 flex justify-center items-center rounded-full bg-[#00D4A1]"><img src="/icons/downarrow.svg" alt="view more" class=""></span></a>
+            <a href="#description"><span class="h-[50px] w-[50px] cursor-pointer  hover:bg-opacity-60 flex justify-center items-center rounded-full bg-[#00D4A1]"><img src="/icons/downarrow.svg" alt="view more" class=""></span></a>
         </div>
     </div>
 </main>
 
-<main class="bg-primary  p-5 md:px-40 lg:px-64" id="projects" bind:this={descriptionSection}>
+<div class="bg-primary  p-5 md:px-40 lg:px-64" id="description" bind:this={descriptionSection}>
     <div id="description" class="gradient leading-[150%] text-white p-6 rounded-[26px] flex flex-col gap-7 font-medium text-sm md:text-lg">
         <p>I am Amezan Adhikari,</p>
         <p>
             A passionate web developer, designer, and
             simulation enthusiast who thrives on bringing digital ideas to life.
         </p>
-  
         <p>
             As a freelancer, I skillfully combine technology and design to create sleek, user-friendly experiences.
             Constantly exploring new possibilities, I love crafting innovative solutions that stand out.
@@ -127,7 +127,7 @@
 
     <div id="education" class="my-16 mx-4">
         <h1 class="text-sm md:text-lg font-medium text-[#A2A2A2] mb-10">Education : </h1>
-        <div class="flex flex-col md:flex-row gap-10">
+        <div class="flex flex-col md:flex-row gap-10 items-center">
             <div class="w-[300px] md:w-[300px] gradient border-2 border-[#5D5D5D] p-4 rounded-[13px] ">
                 <div class="flex items-center md:gap-10 gap-7">
                     <img src="/icons/hat.svg" alt="education" class="w-16">
@@ -137,13 +137,13 @@
                     </div>
                 </div>
                 <div>
-                    <p class="text-white font-medium text-xs">
+                    <p class="text-white font-medium text-xs leading-[150%] text-[#999999]">
                         I am currently perusing my bachelors degree in Computer Science at Tribhuwan University 
                     </p>
                 </div>
             </div>
 
-            <div class="w-[300px] md:w-[300px] gradient border-2 hidden md:block border-[#5D5D5D] p-4 rounded-[13px] ">
+            <div class="w-[300px] md:w-[300px] gradient border-2 border-[#5D5D5D] p-4 rounded-[13px] ">
                 <div class="flex items-center justify-between">
                     <img src="/icons/hat.svg" alt="education" class="w-16">
                     <div class="text-white">
@@ -152,12 +152,41 @@
                     </div>
                 </div>
                 <div>
-                    <p class="text-white font-medium text-xs">
+                    <p class="text-white font-medium text-xs leading-[150%] text-[#999999]">
                         I completed my +2 degree in science from KMC bagbazar.
                     </p>
                 </div>
             </div>
         </div>
     </div>
-</main>
+</div>
+
+<div id="projects" class="bg-primary p-5 md:px-40 lg:px-64">
+    <h1 class="text-sm md:text-lg font-medium text-[#A2A2A2] mb-10">Projects : </h1>
+    <div class="flex flex-col md:flex-row gap-10 items-center">
+
+
+        {#each projects.data as project}
+        <div class="w-[300px] md:w-[300px] gradient border-2 border-[#5D5D5D] overflow-hidden rounded-[13px] ">
+           
+            <div>
+                <img src={project.image} alt="project 1 interactive nodes">
+            </div>
+
+            <div class="border-t-2 border-[#5D5D5D] px-4 pb-1">  
+            <h1 class="font-medium text-center text-sm md:text-md text-white my-5">{project.name}</h1>
+           
+            
+                <p class="text-white font-medium leading-[150%] text-[#999999] text-xs">
+                    {project.description}
+                </p>
+            </div>
+            <div class="text-right px-4 pb-4">
+                <a href={project.link} class="text-[#00D4A1] font-medium text-sm ">View</a>
+            </div>
+        </div>
+
+        {/each}
+    </div>
+</div>
 </section>

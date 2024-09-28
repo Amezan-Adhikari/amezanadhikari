@@ -53,3 +53,32 @@ export const skills = {
         }
     ]
 }
+
+export const projects = {
+    data:[
+        {
+            name: "Graphics: Interactive Nodes",
+            description: "This is a project made using HTML canvas element, JS and CSS",
+            image: "/images/project1.png",
+            link: "https://nodegraphics.netlify.app"
+        },
+        {
+            name: "Play Basuri",
+            description: "Online Basuri simulator, This project tests the design and problem solving abilities of a developer.",
+            image: "/images/project2.png",
+            link: "https://playbasuri.netlify.app"
+        },
+        {
+            name: "Curious Minds",
+            description: "Curious Minds is a main stream project designed to help the new generation learn more about Computer Science and Technology in General.",
+            image: "/images/project3.png",
+            link: "#projects"
+        },
+        {
+            name: "Bookmark Extention",
+            description: "This is a chrome extension that allows you to bookmark any website or link and organize it.",
+            image: "/images/project4.png",
+            link: "#projects"
+        }
+    ]
+}
