@@ -50,8 +50,12 @@
             0% {
                 opacity: 1;
             }
+            60% {
+                filter: blur(0px);
+            }
             100% {
                 opacity: 0;
+                filter: blur(15px);
             }
         }
         #loading {

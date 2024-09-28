@@ -5,7 +5,7 @@
         height: 100vh;
     }
     .fade-in {
-        animation: fadeIn ease 4s;
+        animation: fadeIn ease 3s;
     }
     .fade-out{
         animation: fadeOut ease 3s;
@@ -24,6 +24,38 @@
         50% {opacity:1;}
         100% {opacity:0;}
     }
+    .text-appear-animate{
+        animation: textAppear ease-in-out 0.4s;
+    }
+    .line-appear-animate{
+        animation: lineAppear ease-in-out 2s;
+    }
+
+    @keyframes lineAppear {
+        0% {
+            opacity:1;
+            height: 0;
+            width: 1px;
+        }
+        60%{
+            height: 30vh;
+        }
+        100% {
+            opacity:1;
+            width: 1px;
+            height: 100vh;
+        }
+    }
+    @keyframes textAppear {
+        0% {
+            opacity:1;
+            width: 0;
+        }
+        100% {
+            opacity:1;
+            width: 100%;
+        }
+    }
 
     @keyframes fadeIn {
         0% {opacity:0;}
@@ -31,89 +63,42 @@
         100% {opacity:1;}
     }
 
+    .dropshadow{
+        text-shadow: 24px 27px rgba(0,0,0,0.25);
+    }
 </style>
 
-<script>
-  import { education, skills } from "$lib/data";
-  import Typewriter from "./Typewriter.svelte";
-
-    
-
-    let hasTimeSpanExpired = false;
-    setTimeout(() => {
-        hasTimeSpanExpired = true;
-    },2000)
-
-    let revelTime = false;
-    setTimeout(() => {
-        revelTime = true;
-    },2700)
+<script lang="ts">
+  import { onMount } from "svelte";
 
 
-    const sentences = [
-        "Design",
-        "Develop",
-        "Learn",
-    ];
+    let text:String="AMEZ";
+    onMount(() => {
+        window.innerWidth<=768?text="AMEZAN":text="AMEZ";
+    })
 
 </script>
 
-<main>
-    <div class="font-bold p-4 md:p-10 relative h-full w-full">
-        <h1 class=" absolute transition-all duration-700 ease-in-out {revelTime?"hidden":""} {hasTimeSpanExpired ? 'top-4 left-1/2 md:top-10 md:left-10 -translate-x-1/2 md:translate-x-0 translate-y-0 text-3xl md:text-4xl fade-in' : 'text-6xl md:text-8xl fade-out  top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2'}"> <span class="{hasTimeSpanExpired?'hidden':'text-lg font-medium'}"> I am <br> </span> Amezan {#if !hasTimeSpanExpired}<br>{/if} Adhikari </h1>
-        <div class="w-max mx-auto md:mx-0">
-        <h1 class="{revelTime?"":"hidden"} text-3xl text-center md:text-left md:text-4xl">Amezan Adhikari</h1>
-        <div class="{revelTime?"":"hidden"} flex justify-center mt-4 border-b-2 border-gray-400 pb-4  gap-3">
-            <a href="https://github.com/Amezan-Adhikari">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="github profile amezan adhikari" class="w-6 md:w-10">
-            </a>
-            <a href="https://www.linkedin.com/in/amezan-adhikari-63147b312/">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="linkedin profile amezan adhikari" class="w-6 md:w-10">
-            </a>
-            <a href="https://www.linkedin.com/in/amezan-adhikari-63147b312/">
-                <img src="/icons/instagram.svg" alt="instagram profile amezan adhikari" class="w-6 md:w-10">
-            </a>
+<main class="relative">
+    <div id="hero"  class="bg-primary h-screen w-screen md:grid md:place-items-center overflow-hidden">
+        <div style="user-select: none;" class="text-text overflow-hidden  dropshadow font-black mt-12 md:mt-0 text-[160px] rotate-90 md:rotate-0 md:text-[250px] lg:text-[450px]">
+           {text}
         </div>
+        <span class="absolute line-appear-animate top-1/2 left-1/2 text-text dropshadow -translate-x-1/2 -translate-y-1/2 h-screen w-[1px] bg-[#3e3e3e]">
+
+        </span>
+    </div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div>
+            <h1 class="text-xl md:text-4xl bg-white text-appear-animate text-text w-max text-truncate whitespace-nowrap p-4 px-6 md:p-3 md:px-6 text-text tracking-widest font-bold roboto">Amezan Adhikari</h1>
+            <p class="font-medium text-white md:text-lg mt-4 text-center fade-in">Front End Developer</p>
         </div>
-
-        <div class="flex flex-col md:flex-row-reverse {revelTime?"":"hidden"}">
-            <div id="hero" class="{revelTime?"":"hidden"} flex items-center justify-center text-6xl md:text-[6rem] w-full h-[20rem] md:h-[70vh]">
-                <div class="w-max leading-[5rem] md:leading-[7rem] text-pink-700">
-                <Typewriter {sentences} typingSpeed={200} erasingSpeed={100} pauseBetweenSentences={1500} />
-                </div>
-            </div>
-
-
-            <section class="my-10 {revelTime?"":"hidden"} md:block flex items-center flex-col">
-                <div id="education" class="">
-                    {#each education.data as edu}
-                    <div class="border-2 border-black appear w-[19rem] md:w-[21rem] hover:shadow-md rounded-xl  p-4 font-medium text-xs md:text-sm">
-                        <div class="flex items-center gap-4 "><img src="/icons/hat.svg" alt="education" class="w-10 md:w-16">
-                            <div>
-                                <h1 class="text-sm md:text-lg font-bold">{edu.name}</h1>
-                                <p>{edu.degree} | {edu.major}</p>
-                            </div>
-                        </div>
-                        <p class="opacity-80  mt-3">{edu.description}</p>
-                    </div>
-                    {/each}
-                    
-                </div>
-
-
-                <div id="skills" class=" w-max  my-10">
-                    <h1 class="text-lg md:text-xl font-medium mb-3 text-gray-500">My expertise : </h1>
-                    <div class="grid grid-cols-3 gap-2">
-                        {#each skills.data as skill}
-                        <div class="border border-gray-400 appear flex flex-col items-center justify-center self-stretch hover:shadow-md rounded-xl p-4 font-medium text-xs md:text-sm">
-                            <img src="{skill.icon}" alt="education" class="w-5 md:w-8">
-                                
-                            <p class="opacity-100 font-medium  mt-3">{skill.name}</p>
-                        </div>
-                        {/each}
-                    </div>
-                </div>
-            </section>
+    </div>
+    <div class="absolute bottom-10 fade-in left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div class="flex justify-center items-center flex-col gap-4">
+           
+            <p class="font-medium text-white mt-4 text-center text-sm">View More</p>
+            <span class="h-[50px] w-[50px] cursor-pointer hover:bg-opacity-60 flex justify-center items-center rounded-full bg-[#00D4A1]"><img src="/icons/downarrow.svg" alt="view more" class=""></span>
         </div>
     </div>
 </main>
