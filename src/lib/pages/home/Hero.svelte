@@ -56,7 +56,9 @@
             width: 100%;
         }
     }
-
+    .gradient{
+        background: linear-gradient(#1F1F1F 0%, #3C3939 100%);
+    }
     @keyframes fadeIn {
         0% {opacity:0;}
         15% {opacity:0;}
@@ -70,16 +72,22 @@
 
 <script lang="ts">
   import { onMount } from "svelte";
-
-
+    let heroSection:HTMLElement;
+    let descriptionSection:HTMLElement;
     let text:String="AMEZ";
     onMount(() => {
         window.innerWidth<=768?text="AMEZAN":text="AMEZ";
+
+        window.addEventListener('scroll', (e) => {
+            heroSection.style.filter = `brightness(${(heroSection.getBoundingClientRect().bottom) / window.innerHeight })`;
+            descriptionSection.style.filter = `brightness(${((descriptionSection.getBoundingClientRect().top < 0?(descriptionSection.getBoundingClientRect().bottom):(window.innerHeight-descriptionSection.getBoundingClientRect().top))) / window.innerHeight})`
+        })
     })
 
 </script>
 
-<main class="relative">
+<section class="overflow-hidden">
+<main class="relative" bind:this={heroSection}>
     <div id="hero"  class="bg-primary h-screen w-screen md:grid md:place-items-center overflow-hidden">
         <div style="user-select: none;" class="text-text overflow-hidden  dropshadow font-black mt-12 md:mt-0 text-[160px] rotate-90 md:rotate-0 md:text-[250px] lg:text-[450px]">
            {text}
@@ -90,7 +98,7 @@
     </div>
     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
         <div>
-            <h1 class="text-xl md:text-4xl bg-white text-appear-animate text-text w-max text-truncate whitespace-nowrap p-4 px-6 md:p-3 md:px-6 text-text tracking-widest font-bold roboto">Amezan Adhikari</h1>
+            <h1 class="text-xl md:text-4xl bg-white text-appear-animate text-text w-max text-truncate whitespace-nowrap p-4 px-10 text-text tracking-widest font-bold roboto">Amezan Adhikari</h1>
             <p class="font-medium text-white md:text-lg mt-4 text-center fade-in">Front End Developer</p>
         </div>
     </div>
@@ -98,7 +106,58 @@
         <div class="flex justify-center items-center flex-col gap-4">
            
             <p class="font-medium text-white mt-4 text-center text-sm">View More</p>
-            <span class="h-[50px] w-[50px] cursor-pointer hover:bg-opacity-60 flex justify-center items-center rounded-full bg-[#00D4A1]"><img src="/icons/downarrow.svg" alt="view more" class=""></span>
+            <a href="#projects"><span class="h-[50px] w-[50px] cursor-pointer  hover:bg-opacity-60 flex justify-center items-center rounded-full bg-[#00D4A1]"><img src="/icons/downarrow.svg" alt="view more" class=""></span></a>
         </div>
     </div>
 </main>
+
+<main class="bg-primary  p-5 md:px-40 lg:px-64" id="projects" bind:this={descriptionSection}>
+    <div id="description" class="gradient leading-[150%] text-white p-6 rounded-[26px] flex flex-col gap-7 font-medium text-sm md:text-lg">
+        <p>I am Amezan Adhikari,</p>
+        <p>
+            A passionate web developer, designer, and
+            simulation enthusiast who thrives on bringing digital ideas to life.
+        </p>
+  
+        <p>
+            As a freelancer, I skillfully combine technology and design to create sleek, user-friendly experiences.
+            Constantly exploring new possibilities, I love crafting innovative solutions that stand out.
+        </p>
+    </div>
+
+    <div id="education" class="my-16 mx-4">
+        <h1 class="text-sm md:text-lg font-medium text-[#A2A2A2] mb-10">Education : </h1>
+        <div class="flex flex-col md:flex-row gap-10">
+            <div class="w-[300px] md:w-[300px] gradient border-2 border-[#5D5D5D] p-4 rounded-[13px] ">
+                <div class="flex items-center md:gap-10 gap-7">
+                    <img src="/icons/hat.svg" alt="education" class="w-16">
+                    <div class="text-white">
+                        <h1 class="font-bold text-sm md:text-md">Tribhuwan University</h1>
+                        <h2 class="font-medium text-[13px] md:text-xs text-[#D4D4D4]">Bachelor of Science | CSIT</h2>
+                    </div>
+                </div>
+                <div>
+                    <p class="text-white font-medium text-xs">
+                        I am currently perusing my bachelors degree in Computer Science at Tribhuwan University 
+                    </p>
+                </div>
+            </div>
+
+            <div class="w-[300px] md:w-[300px] gradient border-2 hidden md:block border-[#5D5D5D] p-4 rounded-[13px] ">
+                <div class="flex items-center justify-between">
+                    <img src="/icons/hat.svg" alt="education" class="w-16">
+                    <div class="text-white">
+                        <h1 class="font-bold text-sm md:text-md">Kathmandu Model College</h1>
+                        <h2 class="font-medium text-[13px] text-right md:text-xs text-[#D4D4D4]">+2 science</h2>
+                    </div>
+                </div>
+                <div>
+                    <p class="text-white font-medium text-xs">
+                        I completed my +2 degree in science from KMC bagbazar.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+</section>

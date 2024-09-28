@@ -7,12 +7,12 @@ setTimeout(() => {
   isloading = false;
 },3370)
 </script>
-
+<!-- 
 {#if isloading}
     <Loading/>
-{:else}
+{:else} -->
 <Hero/>
-{/if}
+<!-- {/if} -->
 
 
 
